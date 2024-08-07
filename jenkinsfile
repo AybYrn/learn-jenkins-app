@@ -29,7 +29,7 @@ pipeline {
                     echo "Test stage"
                     ls -la ./build
                     test -f ./build/$TEST_FILE_NAME
-                    npm run test
+                    npm test
                 '''
             }
         }

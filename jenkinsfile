@@ -6,7 +6,7 @@ pipeline {
     }
     
     stages {
-        stage('Build') {
+         /* stage('Build') {
             agent {
                 docker {
                     image 'node:18-alpine'
@@ -22,7 +22,7 @@ pipeline {
                     npm run build
                 '''
             }
-        }
+        } */
         stage('Test') {
             agent {
                 docker {
@@ -50,7 +50,7 @@ pipeline {
             steps {
                 sh '''
                     npm install serve
-                    /workspaces/learn-jenkins-app/node_modules/.bin/serve -s build
+                    node_modules/.bin/serve -s build &
                     npx playwright test
                 '''
             }

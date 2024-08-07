@@ -24,7 +24,7 @@ pipeline {
                 sh '''
                     echo "Test stage"
                     ls -la ./build
-                    grep ./build/index.html
+                    grep -q './build/index.html'
                     npm run test
                 '''
             }

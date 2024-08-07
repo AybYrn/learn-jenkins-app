@@ -1,6 +1,10 @@
 pipeline {
     agent any
-
+    
+    environment {
+        TEST_FILE_NAME = 'index.html'
+    }
+    
     stages {
         stage('Build') {
             agent {
@@ -24,7 +28,7 @@ pipeline {
                 sh '''
                     echo "Test stage"
                     ls -la ./build
-                    grep -q './build/index.html'
+                    test -f ./build/$TEST_FILE_NAME
                     npm run test
                 '''
             }

@@ -101,6 +101,15 @@ pipeline {
             }
         }
 
+        stage('Approve') {
+            steps {
+                echo 'Approving...'
+                timeout(1) {
+                    input 'Ready to deploy?'
+                }
+            }
+        }
+
         stage('Deploy prod') {
             agent {
                 docker {

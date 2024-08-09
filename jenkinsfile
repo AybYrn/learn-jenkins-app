@@ -5,6 +5,7 @@ pipeline {
         TEST_FILE_NAME = 'index.html'
         NETLIFY_SITE_ID = '9edd26fc-c664-4f71-8ac9-ff70517d1767'
         NETLIFY_AUTH_TOKEN = credentials('netlify-token')
+        REACT_APP_VERSION = '1.2.3'
     }
 
     stages {
@@ -116,15 +117,6 @@ pipeline {
                     reportTitles: '',
                     useWrapperFileDirectly: true
                     ])
-                }
-            }
-        }
-
-        stage('Approve') {
-            steps {
-                echo 'Approving...'
-                timeout(1) {
-                    input 'Ready to deploy?'
                 }
             }
         }

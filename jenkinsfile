@@ -37,8 +37,6 @@ pipeline {
                     steps {
                         sh '''
                             echo "Test stage"
-                            ls -la build
-                            test -f build/$TEST_FILE_NAME
                             npm test
                         '''
                     }
@@ -58,7 +56,6 @@ pipeline {
                     }
                     steps {
                         sh '''
-                            npm install serve
                             serve -s build &
                             sleep 10
                             npx playwright test --reporter=html
@@ -134,7 +131,6 @@ pipeline {
 
             steps {
                 sh '''
-                    npm install netlify-cli
                     echo "Deploying to production. Site ID: $NETLIFY_SITE_ID"
                     netlify status
                     netlify deploy --dir=build --prod

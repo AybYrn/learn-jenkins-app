@@ -9,18 +9,16 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('AWS') {
             agent {
                 docker {
-                    image 'node:18-alpine'
-                    reuseNode true
+                    image 'amazon/aws-cli'
+                    args "--entrypoint=''"
                 }
             }
             steps {
                 sh '''
-                    echo "Build stage"
-                    npm ci
-                    npm run build
+                    aws --version
                 '''
             }
         }
